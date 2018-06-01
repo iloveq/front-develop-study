@@ -1,0 +1,58 @@
+一、配置服务
+首先,在你的mongodb目录下新建两个文件夹，一个存放数据的data文件夹，一个存放日志的logs文件夹。
+
+   bin
+     config
+     data
+     logs
+然后在logs文件夹下再建一个mongod.log文件
+
+     logs
+             mongod.log
+都建好之后，继续往下看。
+方法1：直接输入指令
+打开命令行，进入到mongodb的bin文件夹下
+
+mongod.exe --dbpath="D:\mongodb\data" --logpath="D:\mongodb\logs\mongod.log" --install  
+
+方法2：使用配置文件
+在mongodb目录下创建一个config的文件夹，
+然后在config的文件夹下再创建一个mongod.cfg文件（注：文件编码为UTF-8格式） ，文件内容如下：
+
+
+ systemLog:  
+     destination: file  
+     path: D:\mongodb\logs\mongod.log  
+     logAppend: true  
+ storage:  
+     dbPath: D:\mongodb\data  
+（注：不能使用tab键占位，会报错！需要占位请使用空格键）
+弄好后，回到命令行，输入指令：
+
+
+mongod.exe --config "D:\mongodb\config\mongod.cfg" --install 
+参数解释：
+--dbpath : 数据存放的路径；
+--logpath：日志存放的路径；
+--config : 配置文件存放的路径
+--install : 配置windows服务的必要参数
+详细的配置请参照https://docs.mongodb.com/manual/reference/configuration-options/
+如果一切都很顺利没有报错，那么恭喜你，mongodb服务已经配好了！！！
+打开windows服务你会发现多了一个MongoDB的服务在里面
+启动MongoDB的指令：
+
+
+net start MongoDB 
+关闭MongoDB的指令：
+
+
+net stop MongoDB 
+记录一下所踩的坑：
+1.提示：exception in initAndListen: 12596 old lock file, terminating
+解决办法 : 删除data目录下.lock文件
+
+2.提示：Error parsing YAML config file: yaml-cpp: error at line 2, column 13: illegal map value
+try 'mongod.exe --help' for more information
+解决办法：将tab占位符改为空格
+用户操作文档
+https://docs.mongodb.com/
