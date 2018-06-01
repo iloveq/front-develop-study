@@ -1,0 +1,60 @@
+通过 homebrew 安装：brew install mongodb
+
+brew install mongodb
+启动MongoDB服务：
+
+brew services start mongodb
+关闭MongoDB服务：
+
+brew services stop mongodb
+进入MongoDB图形化界面：
+
+mongo
+查看homebrew安装的服务情况：
+brew services list
+
+3.配置 MongoDB：
+安装完 MongoDB 后，需要配置一下 MongoDB ，不然是无法启动服务端的。
+（1）创建根目录下 data/db 文件夹：
+
+mkdir -p /data/db
+如果出现 permission denied ，加上 sudo 命令：
+
+sudo mkdir -p /data/db
+（2）给 /data/db 文件夹赋予权限：
+
+sudo chown id -u /data/db
+如果出现 "illegal user name" 的错误提示，这时我们可以查看当前的 username 并赋予权限：
+
+
+$ whoami
+username
+$ sudo chown username /data/db
+（3）添加环境变量：
+打开 .zshrc 文件；
+
+vim ~/.zshrc
+添加 MongoDB 安装目录到环境变量中：
+
+export PATH=/usr/local/Cellar/mongodb/3.4.6/bin:${PATH}
+执行命令使环境变量生效：
+
+source ~/.zshrc
+（4）修改 MongoDB 配置文件, 配置文件默认在 /usr/local/etc 下的 mongod.conf：
+
+
+# Store data in /usr/local/var/mongodb instead of the default /data/db
+dbpath = /data/db
+# Append logs to /usr/local/var/log/mongodb/mongo.log
+logpath = /usr/local/var/log/mongodb/mongo.log
+logappend = true
+
+
+# Only accept local connections
+bind_ip = 127.0.0.1
+（5）我们来尝试启动服务端：
+$ mongod
+当出现 waiting for connections on port 27017 这些字样时，我们的服务器已经启动成功，它正在运行和侦听端口27017。
+这样就可以开始与服务器进行交互了，例如只需打开一个新的终端选项卡并运行 mongo ，这将打开 mongo 的交互式控制台并连接到默认服务器（localhost:27017）：
+
+
