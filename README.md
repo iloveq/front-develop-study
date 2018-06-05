@@ -1,2 +1,3 @@
 # woaigmz
-用于安装底层结构设计，控件学习
+前端学习笔记
+JavaScript es6
