@@ -1,4 +1,10 @@
 认识有限，不对的地方一起探索  ：）
+Hybird :
+![hybird.PNG]( https://images-cdn.shimo.im/d7qUth48X24VbUCj/hybird.png)
+RN&Weex:
+![rn$weex.PNG]( https://images-cdn.shimo.im/DWG77oQjldAYuW6a/rn_weex.png)
+Flutter:
+![flutter.PNG]( https://images-cdn.shimo.im/hhYDt6XUdvUM5mj2/flutter.png)
 
 热更新框架的实现方式：
 ```
